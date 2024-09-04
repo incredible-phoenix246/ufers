@@ -1,0 +1,14 @@
+# start the docker app
+
+sudo docker compose up -d --build
+
+# copy the old db 
+sudo docker cp ./ufers.sql mysql_db:/tmp/ufers.sql
+
+# migrating the old db
+
+sudo docker exec -it mysql_db bash
+
+exec -it mysql
+mysql -u root -p ufers < /tmp/ufers.sql
+    pass: in the config
